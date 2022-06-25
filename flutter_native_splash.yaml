@@ -1,0 +1,10 @@
+flutter_native_splash:
+  color: "#142f26"
+  image: "assets/images/OMOO-logos/OMOO-logos_transparent.png"
+  seconds: 5
+  ios_content_mode: center
+  android_gravity: center
+  ios: true
+  android: true
+  android12: true
+  web: false

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "766869715269",
+    "project_id": "omoo-flutter-fire",
+    "storage_bucket": "omoo-flutter-fire.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766869715269:android:c45a2d2f2d7bf2b536662c",
+        "android_client_info": {
+          "package_name": "com.example.flutter_proj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766869715269-feer15rrvksem8q053idb3pvvs1pvbnv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwhpT5lIF2Wb8geW2aqN91zSYNkinNtZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766869715269-feer15rrvksem8q053idb3pvvs1pvbnv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
