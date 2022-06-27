@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+
 import 'package:flutter_proj/widgets/bottomNavigationBar.dart';
 import 'package:flutter_proj/widgets/drawer.dart';
-
-import '../widgets/product_card.dart';
+import 'package:flutter_proj/widgets/product_card.dart';
 
 // function to trigger app build
 void main() => runApp(const MyApp(title: 'OMOO F..D',));

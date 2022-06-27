@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_proj/widgets/drawer.dart';
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required String title}) : super(key: key);
