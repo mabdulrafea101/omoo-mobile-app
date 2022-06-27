@@ -1,115 +1,108 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_proj/screens/signup.dart';
-import 'HomePage.dart';
+import 'package:flutter_proj/screens/mainPage.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:flutter_login/flutter_login.dart';
 
 
-class LoginDemo extends StatefulWidget {
-  const LoginDemo({Key? key}) : super(key: key);
+const users = {
+  'customer@gmail.com': '12345',
+  'hunter@gmail.com': 'hunter',
+};
 
-  @override
-  _LoginDemoState createState() {
-    return _LoginDemoState();
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  Duration get loginTime => const Duration(milliseconds: 2250);
+
+  Future<String?> _authUser(LoginData data) {
+    debugPrint('Name: ${data.name}, Password: ${data.password}');
+    return Future.delayed(loginTime).then((_) {
+
+      if (!users.containsKey(data.name)) {
+        return 'User not exists';
+      }
+      if (users[data.name] != data.password) {
+        return 'Password does not match';
+      }
+      return null;
+    });
   }
-}
 
-class _LoginDemoState extends State<LoginDemo> {
+  Future<String?> _signupUser(SignupData data) {
+    debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
+    return Future.delayed(loginTime).then((_) {
+      return null;
+    });
+  }
+
+  Future<String> _recoverPassword(String name) {
+    debugPrint('Name: $name');
+    return Future.delayed(loginTime).then((_) {
+      if (!users.containsKey(name)) {
+        return 'User not exists';
+      }
+      return "Recovery of password by me...";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("Login Page"),
-        backgroundColor: Colors.orange,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 60.0),
-              child: Center(
-                child: SizedBox(
-                    width: 200,
-                    height: 150,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset("assets/images/OMOO-logos/OMOO-logos_transparent.png"),
-                ),
-              ),
-            ),
-            const Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email id as abc@gmail.com'),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(
-                  left: 15.0, right: 15.0, top: 15, bottom: 0),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
+    return FlutterLogin(
 
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter secure password'),
-              ),
-            ),
-            MaterialButton(
-              onPressed: (){
-                //TODO FORGOT PASSWORD SCREEN GOES HERE
-              },
-              child: const Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.redAccent, fontSize: 15),
-              ),
-            ),
-            Container(
-              height: 50,
-              width: 250,
-              decoration: BoxDecoration(
-                  color: Colors.orange, borderRadius: BorderRadius.circular(20)),
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => const MyHomePage()));
-                },
-                child: const Text(
-                  'Login',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 130,
-            ),
-            SizedBox(
-              height: 150,
-              child: GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (_) => const MySignUp()));
-                  },
-                  child: Column(
-                      children: const [
-                        Text(
-                          "Need an Account? Sign-up",
-                          style: TextStyle(color: Colors.redAccent, fontSize: 15),
-                        ),
-                      ]
-                  )
-              ),
+      title: 'OMOO Login',
+      logo: const AssetImage('assets/images/OMOO-logos/OMOO-logos_transparent.png'),
+      onLogin: _authUser,
+      onSignup: _signupUser,
 
-            )
+      loginProviders: <LoginProvider>[
+        LoginProvider(
 
-          ],
+          icon: FontAwesomeIcons.google,
+          label: 'Google',
+          callback: () async {
+            debugPrint('start google sign in');
+            await Future.delayed(loginTime);
+            debugPrint('stop google sign in');
+            return null;
+          },
+
         ),
-      ),
+        LoginProvider(
+          icon: FontAwesomeIcons.facebookF,
+          label: 'Facebook',
+          callback: () async {
+            debugPrint('start facebook sign in');
+            await Future.delayed(loginTime);
+            debugPrint('stop facebook sign in');
+            return null;
+          },
+        ),
+        LoginProvider(
+          icon: FontAwesomeIcons.linkedinIn,
+          callback: () async {
+            debugPrint('start linkedin sign in');
+            await Future.delayed(loginTime);
+            debugPrint('stop linkedin sign in');
+            return null;
+          },
+        ),
+        LoginProvider(
+          icon: FontAwesomeIcons.githubAlt,
+          callback: () async {
+            debugPrint('start github sign in');
+            await Future.delayed(loginTime);
+            debugPrint('stop github sign in');
+            return null;
+          },
+        ),
+      ],
+      onSubmitAnimationCompleted: () {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const MyApp(title: "OMOO Food"),
+        ));
+      },
+      onRecoverPassword: _recoverPassword,
     );
   }
 }

@@ -95,7 +95,7 @@ class _MySignUpState extends State<MySignUp> {
               child: MaterialButton(
                 onPressed: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => const LoginDemo()));
+                      context, MaterialPageRoute(builder: (_) => const LoginScreen()));
                 },
                 child: const Text(
                   'Sign Up',
@@ -111,7 +111,7 @@ class _MySignUpState extends State<MySignUp> {
               child: GestureDetector(
                   onTap: (){
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (_) => const LoginDemo()));
+                        context, MaterialPageRoute(builder: (_) => const LoginScreen()));
                   },
                   child: Column(
                       children: const [
